@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: notificacao-service
+  jackson:
+    time-zone: Brazil/Acre
+    locale: pt-BR
+  datasource:
+    hikari:
+      auto-commit: false
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    default-encoding: UTF-8
+    host: 172.19.0.11
+    username: cptec@tjac.jus.br
+
+springdoc:
+  swagger-ui:
+    disable-swagger-defaults: true
+
+keyCloack:
+  urlBase: ${urlKeyCloack:http://192.168.63.49:3002/realms/tjac}
+  clientUUID: ${clientUUID:ec2162b7-60c8-4cf4-8c20-80d030c9b506}
+  urlAuth: ${urlAuth:http://192.168.63.50:3009}
+
+server:
+  port: ${PORT:8081}
