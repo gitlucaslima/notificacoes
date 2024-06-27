@@ -1,4 +1,4 @@
-package br.jus.tjac.notificacaoservice.configurations;// WebSocketConfig.java
+package br.jus.tjac.notificacaoservice.configurations;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -12,12 +12,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic"); // Habilita um broker para mensagens de destino "/topic"
-        config.setApplicationDestinationPrefixes("/app"); // Define o prefixo para mensagens de destino do aplicativo
+        config.enableSimpleBroker("/topic");
+        config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS(); // Registra o endpoint WebSocket "/ws"
+        registry.addEndpoint("/notificacao")
+                .setAllowedOriginPatterns("http://localhost:4200")
+                .withSockJS();
     }
 }

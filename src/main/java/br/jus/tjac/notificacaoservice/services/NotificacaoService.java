@@ -49,15 +49,13 @@ public class NotificacaoService {
         notificacao.setEmailEnviado(true);
         notificacaoRepository.save(notificacao);
 
-        // Mapper de notificação para notificação de email
         Map<String, Object> variables = this.getNotificationVariables(notificacao);
 
         String templatePath = client.getName() + "/email-template";
 
         emailService.sendEmail(destinatario.getEmail(), request.getAssunto(), templatePath, variables);
 
-        // Enviar notificação via WebSocket
-        messagingTemplate.convertAndSend("/topic/notifications", notificacao);
+        messagingTemplate.convertAndSend("/topic/notifications/" + notificacao.getClient()+ "/" + notificacao.getDestinatarioUsername(), notificacao);
 
         return notificacao;
     }

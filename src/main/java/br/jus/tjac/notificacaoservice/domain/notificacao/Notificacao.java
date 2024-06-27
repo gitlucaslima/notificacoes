@@ -1,7 +1,6 @@
 package br.jus.tjac.notificacaoservice.domain.notificacao;
 
 import jakarta.persistence.*;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
